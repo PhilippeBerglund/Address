@@ -46,13 +46,12 @@
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxOut = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.listBoxSearch = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -178,9 +177,9 @@
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(673, 369);
+            this.buttonRemove.Location = new System.Drawing.Point(709, 391);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(133, 42);
+            this.buttonRemove.Size = new System.Drawing.Size(274, 42);
             this.buttonRemove.TabIndex = 5;
             this.buttonRemove.Text = "Remove";
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -188,7 +187,7 @@
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(512, 369);
+            this.buttonUpdate.Location = new System.Drawing.Point(36, 391);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(133, 42);
             this.buttonUpdate.TabIndex = 4;
@@ -198,9 +197,9 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(211, 369);
+            this.buttonSave.Location = new System.Drawing.Point(227, 391);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(149, 42);
+            this.buttonSave.Size = new System.Drawing.Size(133, 42);
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Save ";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -222,24 +221,16 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(17, 10);
+            this.groupBox1.Location = new System.Drawing.Point(17, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(343, 342);
+            this.groupBox1.Size = new System.Drawing.Size(343, 347);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add New Person";
             // 
-            // textBoxOut
-            // 
-            this.textBoxOut.Location = new System.Drawing.Point(17, 418);
-            this.textBoxOut.Multiline = true;
-            this.textBoxOut.Name = "textBoxOut";
-            this.textBoxOut.Size = new System.Drawing.Size(170, 87);
-            this.textBoxOut.TabIndex = 5;
-            // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(1012, 77);
+            this.btnSearch.Location = new System.Drawing.Point(466, 99);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 35);
             this.btnSearch.TabIndex = 2;
@@ -250,7 +241,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(937, 92);
+            this.label8.Location = new System.Drawing.Point(26, 134);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 20);
             this.label8.TabIndex = 3;
@@ -260,52 +251,55 @@
             // 
             this.listBoxSearch.FormattingEnabled = true;
             this.listBoxSearch.ItemHeight = 20;
-            this.listBoxSearch.Location = new System.Drawing.Point(0, 136);
+            this.listBoxSearch.Location = new System.Drawing.Point(30, 159);
             this.listBoxSearch.Name = "listBoxSearch";
-            this.listBoxSearch.Size = new System.Drawing.Size(666, 144);
+            this.listBoxSearch.Size = new System.Drawing.Size(511, 164);
             this.listBoxSearch.TabIndex = 6;
             this.listBoxSearch.SelectedIndexChanged += new System.EventHandler(this.listBoxSearch_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBoxSearch);
             this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.listBoxSearch);
-            this.groupBox2.Location = new System.Drawing.Point(415, 10);
+            this.groupBox2.Location = new System.Drawing.Point(407, 21);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(706, 342);
+            this.groupBox2.Size = new System.Drawing.Size(571, 347);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search Index";
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(302, 51);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(239, 26);
+            this.textBoxSearch.TabIndex = 8;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "First Name",
             "Last Name",
+            "Email",
+            "Phone",
             "Address",
+            "Zip",
             "City"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 41);
+            this.comboBox1.Location = new System.Drawing.Point(30, 49);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(290, 28);
+            this.comboBox1.Size = new System.Drawing.Size(206, 28);
             this.comboBox1.TabIndex = 7;
-            // 
-            // textBoxSearch
-            // 
-            this.textBoxSearch.Location = new System.Drawing.Point(797, 35);
-            this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(290, 26);
-            this.textBoxSearch.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1436, 526);
-            this.Controls.Add(this.textBoxSearch);
-            this.Controls.Add(this.textBoxOut);
-            this.Controls.Add(this.label8);
+            this.ClientSize = new System.Drawing.Size(1017, 470);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonRemove);
@@ -318,8 +312,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -343,7 +337,6 @@
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxOut;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListBox listBoxSearch;

@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdressBook
@@ -19,109 +13,122 @@ namespace AdressBook
             InitializeComponent();
         }
 
-        // List<Person> personFile = new List<Person>();
 
         public List<string> UpdateList = new List<string>();
 
-      
+
         public void buttonSave_Click(object sender, EventArgs e)
         {
-           // Person person = new Person
-        
-                var FirstName = textBoxFirst.Text;
-                var SecondName = textBoxSecond.Text;
-                var Email = textBoxEmail.Text;
-                var Phone = textBoxPhone.Text;
-                var Address = textBoxAdress.Text;
-                var Zip = textBoxZip.Text;
-                var City = textBoxCity.Text;
-            
+            Person person = new Person();
 
-            textBoxFirst.Clear();
-            textBoxSecond.Clear();
-            textBoxEmail.Clear();
-            textBoxPhone.Clear();
-            textBoxAdress.Clear();
-            textBoxZip.Clear();
-            textBoxCity.Clear();
-
-
-            //person.Save(person.FirstName, person.SecondName, person.Email, person.Phone, person.Address, person.Zip,
-            //    person.City);
-
-
-            string toSave = FirstName + "," + SecondName + "," + Email + "," + Phone + "," +
-                            Address + "," + Zip + "," + City;
-
-            using (
-                StreamWriter path =
-                    new StreamWriter(@"C:\Users\phili\Desktop\Prog16\AdressBook\AdressBook\AddressBookLogg.txt", true))
+            if (!string.IsNullOrWhiteSpace(textBoxFirst.Text) 
+              || !string.IsNullOrWhiteSpace(textBoxSecond.Text))
             {
-                path.WriteLine(toSave);
+
+
+
+                var firstName = textBoxFirst.Text.ToLower();
+                var secondName = textBoxSecond.Text.ToLower();
+                var email = textBoxEmail.Text.ToLower();
+                var phone = textBoxPhone.Text.ToLower();
+                var address = textBoxAdress.Text.ToLower();
+                var zip = textBoxZip.Text.ToLower();
+                var city = textBoxCity.Text.ToLower();
+
+
+                textBoxFirst.Clear();
+                textBoxSecond.Clear();
+                textBoxEmail.Clear();
+                textBoxPhone.Clear();
+                textBoxAdress.Clear();
+                textBoxZip.Clear();
+                textBoxCity.Clear();
+
+
+                person.Save(person.FirstName, person.SecondName, person.Email, person.Phone, person.Address, person.Zip,
+                    person.City);
+
+
+                string toSave = firstName + "," + secondName + "," + email + "," + phone + "," +
+                                address + "," + zip + "," + city;
+
+                using (
+                    StreamWriter writer =
+                        new StreamWriter(@"C:\Users\phili\Desktop\Prog16\AdressBook\AdressBook\AddressBookLogg.txt",
+                            true))
+                {
+                    writer.WriteLine(toSave);
+                }
+
+                MessageBox.Show("Save Successful!");
+
             }
 
-            MessageBox.Show("Save Successful!");
+            else MessageBox.Show("Please Enter a Name");
 
         }
-
-
-
-        List<string> LoadFile()
-        {
-            List<string> personFile = new List<string>();
-            string path = "C:\\Users\\phili\\Desktop\\Prog16\\AdressBook\\AdressBook\\AddressBookLogg.txt";
-            StreamReader sr = new StreamReader(path);
-            string pline;
-            while ((
-                pline
-                    =
-                    sr.ReadLine
-                        ()) != null)
-            {
-                personFile.Add(pline);
-            }
-            sr.Close
-                ();
-            return
-                personFile;
-
-        }
-
-
-
         public List<string> GetNamesFromFile(string combo, string search)
 
         {
             int index = 0;
+
+            if (combo == "First Name")
+            {
+                index = 0;
+            }
+
 
             if (combo == "Last Name")
             {
                 index = 1;
             }
 
-            if (combo == "Address")
+
+            if (combo == "Email")
+            {
+                index = 2;
+            }
+
+
+            if (combo == "Phone")
             {
                 index = 3;
             }
-            if (combo == "City")
+
+
+            if (combo == "Address")
+            {
+                index = 4;
+            }
+
+
+            if (combo == "Zip")
             {
                 index = 5;
             }
 
+
+            if (combo == "City")
+            {
+                index = 6;
+            }
+
+
             List<string> contacts = new List<string>();
             string path = "C:\\Users\\phili\\Desktop\\Prog16\\AdressBook\\AdressBook\\AddressBookLogg.txt";
-            StreamReader sr = new StreamReader(path);
-            string pline;
-            while ((pline = sr.ReadLine()) != null)
-            {
-                string[] array = pline.Split(',');
+            StreamReader streamReader = new StreamReader(path);
 
-                if (array[index] == search)
+            string personLine;
+            while ((personLine = streamReader.ReadLine()) != null)
+            {
+                string[] array = personLine.Split(',');
+
+                if (array[index].Contains(search))
                 {
-                    contacts.Add(pline);
+                    contacts.Add(personLine);
                 }
             }
-            sr.Close();
+            streamReader.Close();
             return contacts;
 
         }
@@ -130,37 +137,13 @@ namespace AdressBook
         public void Search_Click(object sender, EventArgs e)
         {
 
-
-            // listBoxSearch.Text = contact;
             if (comboBox1.SelectedItem != null && !string.IsNullOrEmpty(textBoxSearch.Text))
 
             {
-                List<string> searchContact = GetNamesFromFile(comboBox1.SelectedItem.ToString(),
-                    textBoxSearch.Text.Trim());
-
-                listBoxSearch.DataSource = searchContact;
+                List<string> searchContacts = GetNamesFromFile(comboBox1.SelectedItem.ToString(),
+                    textBoxSearch.Text.ToLower().Trim());
+                listBoxSearch.DataSource = searchContacts;
             }
-
-
-            // vet ej om behövs -----------------------------------
-            //    string[] lines =
-            //    File.ReadAllLines(@"C:\Users\phili\Desktop\Prog16\AdressBook\AdressBook\AddressBookLogg.txt");
-
-            //foreach (string output in lines)
-            //{
-
-            //    if ()
-            //    {
-
-
-            //    }
-
-
-            //    List<string> plist = LoadFile();
-
-            //    listBoxSearch.DataSource = plist;
-
-
 
         }
 
@@ -178,19 +161,45 @@ namespace AdressBook
             textBoxZip.Text = outList[5];
             textBoxCity.Text = outList[6];
 
+            //if (outList.Select      //--------------------------------------------
+            //{
+                
+            //}
+
         }
 
+
+        List<string> LoadFile()
+        {
+            List<string> personFile = new List<string>();
+            string path = "C:\\Users\\phili\\Desktop\\Prog16\\AdressBook\\AdressBook\\AddressBookLogg.txt";
+            StreamReader streamReader = new StreamReader(path);
+            string contactLine;
+
+            while ((contactLine = streamReader.ReadLine()) != null)
+            {
+                personFile.Add(contactLine);
+            }
+            streamReader.Close
+                ();
+            return
+                personFile;
+
+        }
 
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             List<string> newSaveList = new List<string>();
 
+
             if (listBoxSearch.SelectedItem != null)
             {
                 string listString = listBoxSearch.SelectedItem.ToString();
 
                 List<string> backList = LoadFile();
+
+
                 foreach (var line in backList)
                 {
                     if (line != listString)
@@ -202,18 +211,17 @@ namespace AdressBook
                 File.WriteAllLines(@"C:\Users\phili\Desktop\Prog16\AdressBook\AdressBook\AddressBookLogg.txt",
                     newSaveList.ToArray());
 
-                var FirstName = textBoxFirst.Text;
-                var SecondName = textBoxSecond.Text;
-                var Email = textBoxEmail.Text;
-                var Phone = textBoxPhone.Text;
-                var Address = textBoxAdress.Text;
-                var Zip = textBoxZip.Text;
-                var City = textBoxCity.Text;
+                var firstName = textBoxFirst.Text;
+                var secondName = textBoxSecond.Text;
+                var email = textBoxEmail.Text;
+                var phone = textBoxPhone.Text;
+                var address = textBoxAdress.Text;
+                var zip = textBoxZip.Text;
+                var city = textBoxCity.Text;
 
 
-
-                string toSave = FirstName + "," + SecondName + "," + Email + "," + Phone + "," +
-                                Address + "," + Zip + "," + City;
+                string toSave = firstName + "," + secondName + "," + email + "," + phone + "," +
+                                address + "," + zip + "," + city;
 
                 using (
                     StreamWriter path =
@@ -228,18 +236,20 @@ namespace AdressBook
 
             }
 
-
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             List<string> newSaveList = new List<string>();
 
+
             if (listBoxSearch.SelectedItem != null)
             {
                 string listString = listBoxSearch.SelectedItem.ToString();
 
                 List<string> backList = LoadFile();
+
+
                 foreach (var line in backList)
                 {
                     if (line != listString)
@@ -262,11 +272,16 @@ namespace AdressBook
 
                 MessageBox.Show("Remove Successful!");
 
+                if (comboBox1.SelectedItem != null && !string.IsNullOrEmpty(textBoxSearch.Text))
+
+                {
+                    List<string> searchContacts = GetNamesFromFile(comboBox1.SelectedItem.ToString(),
+                        textBoxSearch.Text.ToLower().Trim());
+                    listBoxSearch.DataSource = searchContacts;
+                }
+
 
             }
-
-
-
         }
     }
 }
@@ -281,5 +296,3 @@ namespace AdressBook
 
 
 
-
-    
